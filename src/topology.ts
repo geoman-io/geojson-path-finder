@@ -1,11 +1,12 @@
 import {
-  AllGeoJSON,
   Feature,
-  featureCollection,
   FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
   LineString,
   Position,
-} from "@turf/helpers";
+} from "geojson";
+import { featureCollection, AllGeoJSON } from "@turf/helpers";
 import explode from "@turf/explode";
 import roundCoord from "./round-coord";
 import { Edge, PathFinderOptions, Topology } from "./types";
@@ -17,7 +18,10 @@ export default function createTopology<TEdgeData, TProperties>(
   const { key = defaultKey } = options;
   const { tolerance = 1e-5 } = options;
   const lineStrings = featureCollection(
-    network.features.filter((f) => f.geometry.type === "LineString")
+    network.features.filter((f) => f.geometry.type === "LineString") as Feature<
+      LineString,
+      GeoJsonProperties
+    >[]
   );
   const points = explode(lineStrings as AllGeoJSON);
   const vertices = points.features.reduce(function buildTopologyVertices(
@@ -37,7 +41,7 @@ export default function createTopology<TEdgeData, TProperties>(
   },
   {} as Record<string, Position>);
   const edges = geoJsonReduce(
-    lineStrings,
+    lineStrings as FeatureCollection<LineString, TProperties>,
     buildTopologyEdges,
     [] as Edge<TProperties>[]
   );
@@ -63,7 +67,7 @@ export default function createTopology<TEdgeData, TProperties>(
   }
 }
 
-function geoJsonReduce<T, G, P>(
+function geoJsonReduce<T, G extends Geometry, P>(
   geojson: FeatureCollection<G, P> | Feature<G, P>,
   fn: (accumulator: T, feature: Feature<G, P>) => T,
   seed: T

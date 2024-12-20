@@ -1,12 +1,15 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "types": ["node"],
-    "module": "ES6",
+    "module": "ESNext", // Use "ESNext" for better compatibility with modern ESM modules
+    "moduleResolution": "node", // Required for resolving Node.js-style modules
+    "target": "ES6", // Specify ES6 or higher for compatibility with modern libraries
     "strict": true,
     "outDir": "dist/esm",
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "esModuleInterop": true, // Helps with compatibility between CommonJS and ES modules
+    "resolveJsonModule": true // If your project uses JSON imports
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

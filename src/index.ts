@@ -1,11 +1,11 @@
 import {
   Feature,
   FeatureCollection,
-  lineString,
   LineString,
   Point,
   Position,
-} from "@turf/helpers";
+} from "geojson";
+import { lineString } from "@turf/helpers";
 import { compactNode } from "./compactor";
 import findPath from "./dijkstra";
 import preprocess from "./preprocessor";

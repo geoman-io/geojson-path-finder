@@ -1,5 +1,8 @@
 # GeoJSON Path Finder
 
+NOTE: This fork includes updates to use Turf 7.x and the latest GeoJSON package. It also includes updates to the TypeScript definitions.
+
+
 [![Build status](https://travis-ci.org/perliedman/geojson-path-finder.svg?branch=master)](https://travis-ci.org/perliedman/geojson-path-finder)
 
 Find shortest paths through a network of GeoJSON.
@@ -31,7 +34,7 @@ Detailed (and somewhat experimental) [API Docs](https://www.liedman.net/geojson-
 Create a path finding object:
 
 ```javascript
-import PathFinder from "geojson-path-finder";
+import PathFinder from "@geoman-io/geojson-path-finder";
 import geojson from "./network.json";
 
 const pathFinder = new PathFinder(geojson);
