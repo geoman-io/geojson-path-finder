@@ -1,9 +1,8 @@
-# GeoJSON Path Finder
+# GeoJSON Path Finder (Geoman.io fork)
 
 NOTE: This fork includes updates to use Turf 7.x and the latest GeoJSON package. It also includes updates to the TypeScript definitions.
 
-
-[![Build status](https://travis-ci.org/perliedman/geojson-path-finder.svg?branch=master)](https://travis-ci.org/perliedman/geojson-path-finder)
+[![Build Status](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml)
 
 Find shortest paths through a network of GeoJSON.
 
@@ -59,7 +58,7 @@ As a convenience, the function `pathToGeoJSON` is also exported, it converts the
 a GeoJSON linestring:
 
 ```javascript
-import PathFinder, { pathToGeoJSON } from "geojson-path-finder";
+import PathFinder, { pathToGeoJSON } from "@geoman-io/geojson-path-finder";
 const pathFinder = new PathFinder(geojson);
 const pathLineString = pathToGeoJSON(pathFinder.findPath(start, finish));
 ```
