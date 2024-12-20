@@ -2,7 +2,7 @@
 
 NOTE: This fork includes updates to use Turf 7.x and the latest GeoJSON package. It also includes updates to the TypeScript definitions.
 
-[![Build Status](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml)
+[![CI](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/geoman-io/geojson-path-finder/actions/workflows/ci.yml)
 
 Find shortest paths through a network of GeoJSON.
 
