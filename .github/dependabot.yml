@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "geoman-io/geoman-io"
+    labels:
+      - "dependencies"
+      - "automated"
+    # Automatically attempt to resolve conflicts
+    rebase-strategy: "auto"
+    # Group updates together
+    groups:
+      minor-and-patch-updates:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
