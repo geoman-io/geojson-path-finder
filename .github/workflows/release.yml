@@ -182,18 +182,11 @@ jobs:
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Download release artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: release-artifacts
-          path: ./pub
-
       - name: Publish to NPM
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          cd pub
           if [[ "${{ needs.validate.outputs.is-prerelease }}" == "true" ]]; then
             npm publish --tag beta --provenance --access public
           else
