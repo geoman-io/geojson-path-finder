@@ -17,7 +17,6 @@
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p tsconfig.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "prepare": "npm test && npm run build",
     "pretest": "npm run build:esm",
     "test": "vitest run"
   },
