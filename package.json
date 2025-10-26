@@ -1,9 +1,12 @@
 {
-  "name": "geojson-path-finder",
-  "version": "2.0.2",
+  "name": "@geoman-io/geojson-path-finder",
+  "version": "3.0.0",
   "description": "Find shortest path through a network of GeoJSON",
-  "repository": "git@github.com:perliedman/geojson-path-finder.git",
-  "homepage": "https://github.com/perliedman/geojson-path-finder",
+  "repository": "git@github.com:geoman-io/geojson-path-finder.git",
+  "homepage": "https://github.com/geoman-io/geojson-path-finder",
+  "bugs": {
+    "url": "https://github.com/geoman-io/geojson-path-finder/issues"
+  },
   "module": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
   "types": "dist/esm/index.d.ts",
@@ -18,21 +21,29 @@
     "pretest": "npm run build:esm",
     "test": "vitest run"
   },
-  "author": "Per Liedman <per@liedman.net>",
+  "author": {
+    "name": "Geoman.io",
+    "email": "sales@geoman.io",
+    "url": "https://geoman.io"
+  },
   "license": "ISC",
   "dependencies": {
     "@turf/distance": "^7.2.0",
     "@turf/explode": "^7.2.0",
     "@turf/helpers": "^7.2.0",
-    "tinyqueue": "^2.0.3"
+    "tinyqueue": "^3.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
-    "@types/geojson": "^7946.0.15",
-    "@types/node": "^18.11.7",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^24.9.1",
     "esm": "^3.2.25",
-    "typedoc": "^0.23.22",
-    "typescript": "^4.8.4",
-    "vitest": "^0.26.2"
+    "typedoc": "^0.28.14",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
