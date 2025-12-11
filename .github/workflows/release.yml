@@ -180,6 +180,15 @@ jobs:
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Update npm to latest
+        run: npm install -g npm@latest
+
+      - name: Debug OIDC and npm info
+        run: |
+          echo "npm version: $(npm --version)"
+          echo "node version: $(node --version)"
+          npm whoami 2>&1 || echo "Not logged in (expected for OIDC)"
+
       - name: Download release artifacts
         uses: actions/download-artifact@v4
         with:
