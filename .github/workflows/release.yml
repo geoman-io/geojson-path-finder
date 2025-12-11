@@ -165,6 +165,9 @@ jobs:
     needs: [validate, build-and-test]
     environment: release
     if: needs.validate.outputs.is-prerelease == 'false' || github.event.inputs.prerelease == true
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout code
