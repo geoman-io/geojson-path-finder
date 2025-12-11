@@ -22,7 +22,6 @@ permissions:
 
 env:
   PACKAGE_NAME: geoman-io-geojson-path-finder
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NODE_VERSION: "22"
 
 jobs:
@@ -196,25 +195,12 @@ jobs:
         run: |
           npm version ${{ needs.validate.outputs.version }} --no-git-tag-version
 
-      - name: Configure npm for scope
-        run: |
-          echo "@geoman-io:registry=https://registry.npmjs.org" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-
       - name: Debug npm configuration
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
         run: |
           echo "Package name: $(node -p "require('./package.json').name")"
           echo "Package version: $(node -p "require('./package.json').version")"
-          npm whoami || echo "Not authenticated"
-          test -f .npmrc && echo ".npmrc exists" || echo ".npmrc missing"
 
       - name: Publish to NPM
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
         run: |
           if [[ "${{ needs.validate.outputs.is-prerelease }}" == "true" ]]; then
             npm publish --tag beta --provenance --access public
