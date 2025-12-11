@@ -129,6 +129,9 @@ jobs:
           name: release-artifacts
           path: |
             dist/
+            package.json
+            LICENSE.md
+            README.md
           retention-days: 7
 
   # Create GitHub release
@@ -179,11 +182,38 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-artifacts
-          path: ./dist
+          path: ./artifacts
+
+      - name: Restore build artifacts
+        run: |
+          cp -r artifacts/dist .
+          cp artifacts/package.json .
+          cp artifacts/LICENSE.md .
+          cp artifacts/README.md .
+
+      - name: Update version in package.json
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          npm version ${{ needs.validate.outputs.version }} --no-git-tag-version
+
+      - name: Configure npm for scope
+        run: |
+          echo "@geoman-io:registry=https://registry.npmjs.org" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
+
+      - name: Debug npm configuration
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
+        run: |
+          echo "Package name: $(node -p "require('./package.json').name")"
+          echo "Package version: $(node -p "require('./package.json').version")"
+          npm whoami || echo "Not authenticated"
+          test -f .npmrc && echo ".npmrc exists" || echo ".npmrc missing"
 
       - name: Publish to NPM
         shell: bash
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_GEOMAN }}
         run: |
           if [[ "${{ needs.validate.outputs.is-prerelease }}" == "true" ]]; then

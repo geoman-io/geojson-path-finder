@@ -27,19 +27,19 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@turf/distance": "^7.2.0",
-    "@turf/explode": "^7.2.0",
-    "@turf/helpers": "^7.2.0",
+    "@turf/distance": "^7.3.1",
+    "@turf/explode": "^7.3.1",
+    "@turf/helpers": "^7.3.1",
     "tinyqueue": "^3.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.2",
+    "@tsconfig/node22": "^22.0.5",
     "@types/geojson": "^7946.0.16",
-    "@types/node": "^24.9.1",
+    "@types/node": "^25.0.0",
     "esm": "^3.2.25",
-    "typedoc": "^0.28.14",
+    "typedoc": "^0.28.15",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.3"
+    "vitest": "^4.0.15"
   },
   "publishConfig": {
     "access": "public",
