@@ -27,16 +27,6 @@ export default class PathFinder<
   ) {
     this.graph = preprocess(network, options);
     this.options = options;
-
-    // if (
-    //   Object.keys(this.graph.compactedVertices).filter(function (k) {
-    //     return k !== "edgeData";
-    //   }).length === 0
-    // ) {
-    //   throw new Error(
-    //     "Compacted graph contains no forks (topology has no intersections)."
-    //   );
-    // }
   }
 
   findPath(

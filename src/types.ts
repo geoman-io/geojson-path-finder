@@ -48,7 +48,6 @@ export type PathFinderGraph<TEdgeData> = {
 export type PathFinderOptions<TEdgeReduce, TProperties> = {
   tolerance?: number;
   key?: (coordinates: Position) => string;
-  compact?: boolean;
   /**
    * Calculate weight for an edge from a node at position a to a node at position b
    * @param {Position} a coordinate of node A
